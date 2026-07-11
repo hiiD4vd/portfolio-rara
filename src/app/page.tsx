@@ -1,4 +1,8 @@
-import React from "react";
+"use client";
+
+import dynamic from 'next/dynamic';
+
+const Scene3D = dynamic(() => import('../components/Scene3D'), { ssr: false });
 
 export default function Home() {
   return (
@@ -12,35 +16,29 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section id="hero" className="min-h-screen flex flex-col justify-center items-center text-center px-6 relative overflow-hidden bg-[url('/bg-hero.jpg')] bg-cover bg-center bg-no-repeat">
-        <h1 className="text-6xl md:text-[5.5rem] font-bold mb-4 tracking-tight leading-tight mt-12 drop-shadow-md">
-          Hi, I'm <span className="font-serif italic font-normal text-white drop-shadow-lg">Rara Farohah</span>
-        </h1>
-        <p className="mt-2 text-white max-w-2xl mx-auto text-sm md:text-base font-medium tracking-wide drop-shadow-md">
-          Mendedikasikan empati, pemahaman mendalam, dan ruang aman untuk mendukung perkembangan serta potensi setiap individu.
-        </p>
-        <div className="mt-8 flex flex-col sm:flex-row gap-4">
-          <a href="#about" className="bg-white text-black px-8 py-3 rounded-full text-sm font-bold hover:bg-gray-200 transition-colors shadow-lg">
-            Jelajahi Profil
-          </a>
-          <a href="#contact" className="bg-white text-black px-8 py-3 rounded-full text-sm font-bold hover:bg-gray-200 transition-colors shadow-lg">
-            Hubungi Saya
-          </a>
-        </div>
+      <section id="hero" className="min-h-screen flex flex-col justify-center items-center text-center px-6 relative overflow-hidden">
+        
+        {/* 3D WebGL Background & Glass Refraction */}
+        <Scene3D />
 
-        {/* Liquid Glass Card */}
-        <div className="absolute hidden md:flex bottom-8 right-8 w-[361px] h-[172px] p-5 gap-4 items-center liquid-glass">
-          <div className="w-[110px] h-[110px] rounded-xl overflow-hidden shrink-0 ml-1">
-            <img src="/rara.jpg" alt="Rara Farohah" className="w-full h-full object-cover" />
-          </div>
-          <div className="text-left flex flex-col justify-center">
-            <h3 className="font-bold text-white text-[17px] leading-tight mb-1 drop-shadow-md">Kenali Lebih Jauh</h3>
-            <p className="text-[11px] text-white/90 leading-tight mb-4 drop-shadow-sm pr-2">Unduh Resume (CV) lengkap untuk melihat pencapaian dan rekam jejak.</p>
-            <a href="#certificates" className="bg-black text-white text-xs font-bold px-6 py-2.5 rounded-full w-fit hover:bg-gray-800 transition-colors">
-              Unduh CV
+        <div className="relative z-10 pointer-events-none flex flex-col items-center w-full">
+          <h1 className="text-6xl md:text-[5.5rem] font-bold mb-4 tracking-tight leading-tight mt-12 drop-shadow-md">
+            Hi, I'm <span className="font-serif italic font-normal text-white drop-shadow-lg">Rara Farohah</span>
+          </h1>
+          <p className="mt-2 text-white max-w-2xl mx-auto text-sm md:text-base font-medium tracking-wide drop-shadow-md">
+            Mendedikasikan empati, pemahaman mendalam, dan ruang aman untuk mendukung perkembangan serta potensi setiap individu.
+          </p>
+          <div className="mt-8 flex flex-col sm:flex-row gap-4 pointer-events-auto">
+            <a href="#about" className="bg-white text-black px-8 py-3 rounded-full text-sm font-bold hover:bg-gray-200 transition-colors shadow-lg">
+              Jelajahi Profil
+            </a>
+            <a href="#contact" className="bg-white text-black px-8 py-3 rounded-full text-sm font-bold hover:bg-gray-200 transition-colors shadow-lg">
+              Hubungi Saya
             </a>
           </div>
         </div>
+
+        {/* The 3D Glass Card and its content is entirely handled inside Scene3D */}
       </section>
 
       {/* About Section */}
