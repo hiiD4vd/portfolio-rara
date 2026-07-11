@@ -4,50 +4,42 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground font-sans selection:bg-pink-accent selection:text-gray-dark">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full glass z-50 py-4 px-6 md:px-12 flex justify-between items-center">
-        <div className="text-2xl font-bold tracking-widest text-pink-accent">RARA<span className="text-foreground">.</span></div>
-        <div className="hidden md:flex gap-8 text-sm font-medium text-gray-light">
-          <a href="#about" className="hover:text-pink-accent transition-colors">Tentang</a>
-          <a href="#experience" className="hover:text-pink-accent transition-colors">Pengalaman</a>
-          <a href="#education" className="hover:text-pink-accent transition-colors">Pendidikan</a>
-          <a href="#skills" className="hover:text-pink-accent transition-colors">Keahlian</a>
-        </div>
-        <a href="#contact" className="hidden md:block border border-pink-accent text-pink-accent px-5 py-2 rounded-full font-medium hover:bg-pink-accent hover:text-gray-dark transition-colors">
-          Kontak
-        </a>
+      <nav className="fixed top-6 left-1/2 -translate-x-1/2 glass rounded-full z-50 py-3 px-8 flex gap-6 items-center border border-white/20">
+        <a href="#about" className="text-sm font-medium hover:text-pink-accent transition-colors">Tentang</a>
+        <a href="#experience" className="text-sm font-medium hover:text-pink-accent transition-colors">Pengalaman</a>
+        <a href="#education" className="text-sm font-medium hover:text-pink-accent transition-colors">Pendidikan</a>
+        <a href="#skills" className="text-sm font-medium hover:text-pink-accent transition-colors">Keahlian</a>
       </nav>
 
       {/* Hero Section */}
-      <section id="hero" className="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-24 relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-pink-accent/10 rounded-full blur-3xl -z-10"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-dark/10 rounded-full blur-3xl -z-10"></div>
-        
-        <div className="w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border-2 border-pink-accent mb-8 relative p-1">
-          <div className="w-full h-full rounded-full overflow-hidden bg-gray-dark">
-            <img 
-              src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop" 
-              alt="Rara Farohah Placeholder" 
-              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-            />
-          </div>
-        </div>
-        <h1 className="text-5xl md:text-7xl font-bold mb-4 tracking-tight">
-          Hi, I'm <span className="text-pink-accent">Rara</span>
+      <section id="hero" className="min-h-screen flex flex-col justify-center items-center text-center px-6 relative overflow-hidden bg-[url('/bg-hero.jpg')] bg-cover bg-center bg-no-repeat">
+        <h1 className="text-6xl md:text-[5.5rem] font-bold mb-4 tracking-tight leading-tight mt-12 drop-shadow-md">
+          Hi, I'm <span className="font-serif italic font-normal text-white drop-shadow-lg">Rara Farohah</span>
         </h1>
-        <p className="text-xl md:text-2xl text-gray-light max-w-2xl font-light">
-          Bimbingan Konseling <span className="text-pink-accent">&</span> Sales Enthusiast
+        <p className="mt-2 text-white max-w-2xl mx-auto text-sm md:text-base font-medium tracking-wide drop-shadow-md">
+          Mendedikasikan empati, pemahaman mendalam, dan ruang aman untuk mendukung perkembangan serta potensi setiap individu.
         </p>
-        <p className="mt-6 text-gray-light max-w-lg mx-auto text-sm md:text-base leading-relaxed">
-          Seorang individu teliti dan mandiri yang menggabungkan empati mendalam dengan kemampuan analitis tajam. Berprestasi secara akademis dan sangat adaptif terhadap dinamika pasar.
-        </p>
-        <div className="mt-10 flex flex-col sm:flex-row gap-4">
-          <a href="#contact" className="bg-pink-accent text-gray-dark px-8 py-3 rounded-full font-bold hover:bg-pink-dark transition-colors shadow-[0_0_20px_rgba(255,182,193,0.4)]">
-            Mari Berdiskusi
-          </a>
-          <a href="#experience" className="border border-gray-light text-foreground px-8 py-3 rounded-full font-bold hover:border-pink-accent hover:text-pink-accent transition-colors">
+        <div className="mt-8 flex flex-col sm:flex-row gap-4">
+          <a href="#about" className="bg-white text-black px-8 py-3 rounded-full text-sm font-bold hover:bg-gray-200 transition-colors shadow-lg">
             Jelajahi Profil
           </a>
+          <a href="#contact" className="bg-white text-black px-8 py-3 rounded-full text-sm font-bold hover:bg-gray-200 transition-colors shadow-lg">
+            Hubungi Saya
+          </a>
+        </div>
+
+        {/* Liquid Glass Card */}
+        <div className="absolute hidden md:flex bottom-8 right-8 w-[361px] h-[172px] p-5 gap-4 items-center liquid-glass">
+          <div className="w-[110px] h-[110px] rounded-xl overflow-hidden shrink-0 ml-1">
+            <img src="/rara.jpg" alt="Rara Farohah" className="w-full h-full object-cover" />
+          </div>
+          <div className="text-left flex flex-col justify-center">
+            <h3 className="font-bold text-white text-[17px] leading-tight mb-1 drop-shadow-md">Kenali Lebih Jauh</h3>
+            <p className="text-[11px] text-white/90 leading-tight mb-4 drop-shadow-sm pr-2">Unduh Resume (CV) lengkap untuk melihat pencapaian dan rekam jejak.</p>
+            <a href="#certificates" className="bg-black text-white text-xs font-bold px-6 py-2.5 rounded-full w-fit hover:bg-gray-800 transition-colors">
+              Unduh CV
+            </a>
+          </div>
         </div>
       </section>
 
