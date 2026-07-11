@@ -1,47 +1,119 @@
 "use client";
+import React, { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { caveatBrush } from "./layout";
 
-import dynamic from 'next/dynamic';
-
-const Scene3D = dynamic(() => import('../components/Scene3D'), { ssr: false });
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
 export default function Home() {
+  const container = useRef<HTMLElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
+  const cloudsRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    gsap.to(bgRef.current, {
+      scale: 1.25,
+      ease: "none",
+      scrollTrigger: {
+        trigger: cloudsRef.current,
+        start: "top bottom",
+        end: "top top",
+        scrub: true,
+      }
+    });
+  }, { scope: container });
+
   return (
-    <main className="min-h-screen bg-background text-foreground font-sans selection:bg-pink-accent selection:text-gray-dark">
+    <main ref={container} className="text-foreground font-sans selection:bg-pink-accent selection:text-gray-dark">
+      
       {/* Navigation */}
-      <nav className="fixed top-6 left-1/2 -translate-x-1/2 glass rounded-full z-50 py-3 px-8 flex gap-6 items-center border border-white/20">
-        <a href="#about" className="text-sm font-medium hover:text-pink-accent transition-colors">Tentang</a>
-        <a href="#experience" className="text-sm font-medium hover:text-pink-accent transition-colors">Pengalaman</a>
-        <a href="#education" className="text-sm font-medium hover:text-pink-accent transition-colors">Pendidikan</a>
-        <a href="#skills" className="text-sm font-medium hover:text-pink-accent transition-colors">Keahlian</a>
+      <nav className="fixed top-8 left-1/2 -translate-x-1/2 navbar-glass rounded-full z-50 py-3.5 px-10 flex gap-8 items-center">
+        <a href="#about" className="text-[14.5px] font-normal text-white hover:text-white/70 transition-colors tracking-wide drop-shadow-sm">Tentang</a>
+        <a href="#experience" className="text-[14.5px] font-normal text-white hover:text-white/70 transition-colors tracking-wide drop-shadow-sm">Pengalaman</a>
+        <a href="#education" className="text-[14.5px] font-normal text-white hover:text-white/70 transition-colors tracking-wide drop-shadow-sm">Pendidikan</a>
+        <a href="#skills" className="text-[14.5px] font-normal text-white hover:text-white/70 transition-colors tracking-wide drop-shadow-sm">Keahlian</a>
       </nav>
 
       {/* Hero Section */}
-      <section id="hero" className="min-h-screen flex flex-col justify-center items-center text-center px-6 relative overflow-hidden">
+      <section id="hero" className="sticky top-0 h-screen flex flex-col justify-center items-center text-center px-6 relative overflow-hidden z-10">
         
-        {/* 3D WebGL Background & Glass Refraction */}
-        <Scene3D />
+        {/* Animated Background */}
+        <div ref={bgRef} className="absolute inset-0 w-full h-full bg-[url('/bg-hero.jpg')] bg-cover bg-center origin-center -z-10"></div>
+        
+        <div className="relative z-10 pointer-events-none flex flex-col items-center justify-center w-full">
+          
+          {/* Main Hand-drawn Title with Crayon Texture */}
+          <div className="flex flex-col items-center justify-center mb-6">
+            <h1 
+              className="text-[9rem] md:text-[14rem] leading-[0.7] -rotate-3 drop-shadow-lg"
+              style={{ 
+                fontFamily: "'Caveat Brush', cursive",
+                background: "url('https://www.transparenttextures.com/patterns/stucco.png'), #FFD700",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent"
+              }}
+            >
+              Rara
+            </h1>
+            <h1 
+              className="text-[9rem] md:text-[14rem] leading-[0.7] rotate-2 ml-8 md:ml-16 drop-shadow-lg"
+              style={{ 
+                fontFamily: "'Caveat Brush', cursive",
+                background: "url('https://www.transparenttextures.com/patterns/stucco.png'), #FFD700",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent"
+              }}
+            >
+              Farohah
+            </h1>
+          </div>
 
-        <div className="relative z-10 pointer-events-none flex flex-col items-center w-full">
-          <h1 className="text-6xl md:text-[5.5rem] font-bold mb-4 tracking-tight leading-tight mt-12 drop-shadow-md">
-            Hi, I'm <span className="font-serif italic font-normal text-white drop-shadow-lg">Rara Farohah</span>
-          </h1>
-          <p className="mt-2 text-white max-w-2xl mx-auto text-sm md:text-base font-medium tracking-wide drop-shadow-md">
-            Mendedikasikan empati, pemahaman mendalam, dan ruang aman untuk mendukung perkembangan serta potensi setiap individu.
+          {/* Hand-drawn Subtitle */}
+          <p 
+            className="mt-4 text-[#FFD700] max-w-2xl mx-auto text-3xl md:text-4xl tracking-wide drop-shadow-lg -rotate-1"
+            style={{ 
+              fontFamily: "'Just Another Hand', cursive",
+              background: "url('https://www.transparenttextures.com/patterns/stucco.png'), #FFD700",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent"
+            }}
+          >
+            Hadir dengan empati, untuk setiap potensi.
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 pointer-events-auto">
-            <a href="#about" className="bg-white text-black px-8 py-3 rounded-full text-sm font-bold hover:bg-gray-200 transition-colors shadow-lg">
+
+          <div className="mt-12 flex flex-col sm:flex-row gap-6 pointer-events-auto">
+            <a href="#about" className="bg-white/10 backdrop-blur-md border border-white/30 text-white px-10 py-3.5 rounded-full text-sm font-semibold hover:bg-white hover:text-black transition-all shadow-xl">
               Jelajahi Profil
-            </a>
-            <a href="#contact" className="bg-white text-black px-8 py-3 rounded-full text-sm font-bold hover:bg-gray-200 transition-colors shadow-lg">
-              Hubungi Saya
             </a>
           </div>
         </div>
 
-        {/* The 3D Glass Card and its content is entirely handled inside Scene3D */}
+        {/* Liquid Glass Card (Baked Image) */}
+        <div className="absolute hidden md:flex bottom-16 right-8 w-[361px] h-[172px] p-5 gap-4 items-center z-30 bg-[url('/glass-baked.png')] bg-cover bg-center bg-no-repeat rounded-[24px] shadow-[0_30px_60px_rgba(0,0,0,0.4)] border border-white/20">
+          <div className="w-[110px] h-[110px] rounded-xl overflow-hidden shrink-0 ml-1 shadow-[0_10px_20px_rgba(0,0,0,0.3)]">
+            <img src="/rara.jpg" alt="Rara Farohah" className="w-full h-full object-cover" />
+          </div>
+          <div className="text-left flex flex-col justify-center">
+            <h3 className="font-bold text-white text-[17px] leading-tight mb-1 drop-shadow-md">Kenali Lebih Jauh</h3>
+            <p className="text-[11px] text-white/90 leading-tight mb-4 drop-shadow-md pr-2">Unduh Resume (CV) lengkap untuk melihat pencapaian dan rekam jejak.</p>
+            <a href="#certificates" className="bg-black text-white text-xs font-bold px-6 py-2.5 rounded-full w-fit hover:scale-105 transition-transform shadow-xl">
+              Unduh CV
+            </a>
+          </div>
+        </div>
       </section>
 
-      {/* About Section */}
+      {/* Clouds Transition */}
+      <div ref={cloudsRef} className="w-full relative z-30 pointer-events-none flex justify-center">
+        <img src="/clouds.png" alt="Clouds" className="w-full h-auto min-w-[1200px] object-cover block" />
+      </div>
+
+      <div className="bg-background relative z-20 -mt-[25vh] pt-[25vh]">
+        {/* About Section */}
       <section id="about" className="py-24 px-6 md:px-20 max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row gap-12 items-center">
           <div className="w-full md:w-1/2">
@@ -246,6 +318,7 @@ export default function Home() {
           </p>
         </div>
       </footer>
+      </div>
     </main>
   );
 }

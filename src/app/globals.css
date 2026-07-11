@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Just+Another+Hand&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -19,6 +20,7 @@
   --font-sans: var(--font-outfit), var(--font-geist-sans);
   --font-serif: var(--font-playfair);
   --font-mono: var(--font-geist-mono);
+  --font-caveat: var(--font-caveat-brush);
 }
 
 body {
@@ -31,20 +33,46 @@ body {
 /* Glassmorphism utilities */
 .glass {
   background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar-glass {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.3);
 }
 
 .liquid-glass {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.01) 100%);
-  backdrop-filter: blur(12px) saturate(140%);
-  -webkit-backdrop-filter: blur(12px) saturate(140%);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 24px;
+  /* 1. Light -45deg 80% (Subtle glare) + Fake Dispersion (Subtle rainbow) */
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 50%),
+    linear-gradient(90deg, rgba(255, 0, 128, 0.03) 0%, rgba(0, 255, 255, 0.03) 100%),
+    rgba(255, 255, 255, 0.01);
+  
+  /* 2. Frost 4 & Refraction 100 */
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  
+  /* 3. Extremely subtle border, no ugly white lines */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+  border-right-color: rgba(255, 255, 255, 0.05);
+  
+  /* 4. Depth 74: Created using inset rim lights and shadows */
   box-shadow: 
-    0 30px 60px rgba(0, 0, 0, 0.15),
-    inset 1px 1px 2px rgba(255, 255, 255, 0.4),
-    inset -1px -1px 2px rgba(255, 255, 255, 0.05);
+    0 30px 60px rgba(0, 0, 0, 0.4), /* Drop shadow */
+    inset 0 1px 1px rgba(255, 255, 255, 0.3), /* Top highlight rim */
+    inset 0 -1px 1px rgba(0, 0, 0, 0.2); /* Bottom shadow rim */
+
+  border-radius: 24px;
 }
 
 .glass-hover:hover {
