@@ -167,7 +167,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      </section>
+
       {/* Experience Section */}
       <section id="experience" className="py-24 px-6 md:px-20 relative z-10">
         <div className="max-w-4xl mx-auto">
